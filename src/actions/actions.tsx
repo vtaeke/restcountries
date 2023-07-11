@@ -10,12 +10,12 @@ export const FETCH_COUNTRY_SUCCESS = 'FETCH_COUNTRY_SUCCESS';
 export const FETCH_COUNTRY_FAILURE = 'FETCH_COUNTRY_FAILURE';
 
 export const fetchCountries = () => {
-  return (dispatch: Dispatch) => {
+  return (dispatch: Dispatch<any>) => {
     dispatch(fetchCountriesRequest());
     axios
       .get('https://restcountries.com/v3.1/all?fields=name,flags,cca3')
       .then((response) => {
-        const countries = response.data;
+        const countries: any[] = response.data;
         dispatch(fetchCountriesSuccess(countries));
       })
       .catch((error) => {
@@ -24,8 +24,8 @@ export const fetchCountries = () => {
   };
 };
 
-export const fetchCountry = (cca3) => {
-  return (dispatch: Dispatch) => {
+export const fetchCountry = (cca3: string) => {
+  return (dispatch: Dispatch<any>) => {
     dispatch(fetchCountryRequest());
     axios
       .get(`https://restcountries.com/v3.1/alpha/${cca3}`)
@@ -40,33 +40,33 @@ export const fetchCountry = (cca3) => {
 
 export const fetchCountriesRequest = () => {
   return {
-    type: FETCH_COUNTRIES_REQUEST,
+    type: FETCH_COUNTRIES_REQUEST as typeof FETCH_COUNTRIES_REQUEST,
   };
 };
 
-export const fetchCountriesSuccess = (countries) => {
+export const fetchCountriesSuccess = (countries: any[]) => {
   return {
-    type: FETCH_COUNTRIES_SUCCESS,
+    type: FETCH_COUNTRIES_SUCCESS as typeof FETCH_COUNTRIES_SUCCESS,
     payload: countries,
   };
 };
 
-export const fetchCountriesFailure = (error) => {
+export const fetchCountriesFailure = (error: string) => {
   return {
-    type: FETCH_COUNTRIES_FAILURE,
+    type: FETCH_COUNTRIES_FAILURE as typeof FETCH_COUNTRIES_FAILURE,
     payload: error,
   };
 };
 
 export const fetchCountryRequest = () => {
   return {
-    type: FETCH_COUNTRY_REQUEST,
+    type: FETCH_COUNTRY_REQUEST as typeof FETCH_COUNTRY_REQUEST,
   };
 };
 
-export const fetchCountrySuccess = (country, cca3) => {
+export const fetchCountrySuccess = (country: any, cca3: string) => {
   return {
-    type: FETCH_COUNTRY_SUCCESS,
+    type: FETCH_COUNTRY_SUCCESS as typeof FETCH_COUNTRY_SUCCESS,
     payload: {
       country,
       cca3,
@@ -74,14 +74,14 @@ export const fetchCountrySuccess = (country, cca3) => {
   };
 };
 
-export const fetchCountryFailure = (error) => {
+export const fetchCountryFailure = (error: string) => {
   return {
-    type: FETCH_COUNTRY_FAILURE,
+    type: FETCH_COUNTRY_FAILURE as typeof FETCH_COUNTRY_FAILURE,
     payload: error,
   };
 };
 
-export const setActiveCountry = (country) => ({
-  type: SET_ACTIVE_COUNTRY,
+export const setActiveCountry = (country: any) => ({
+  type: SET_ACTIVE_COUNTRY as typeof SET_ACTIVE_COUNTRY,
   payload: country,
 });

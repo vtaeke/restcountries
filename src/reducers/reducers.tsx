@@ -1,3 +1,4 @@
+import { Action } from 'redux';
 import {
   FETCH_COUNTRIES_REQUEST,
   FETCH_COUNTRIES_SUCCESS,
@@ -20,7 +21,7 @@ const initialState = {
   },
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: Action) => {
   switch (action.type) {
     case FETCH_COUNTRIES_REQUEST:
       return {
