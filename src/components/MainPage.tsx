@@ -18,11 +18,11 @@ const MainPage = () => {
 
   return (
     <div className='container'>
+      <h2>Информация о странах мира</h2>
       <div className='row'>
-        <div className='col-md-4'>
-          {countries.map((country) => (
+        {countries.map((country) => (
+          <div key={country.cca3} className='col-md-2'>
             <button
-              key={country.cca3}
               style={{ cursor: 'pointer' }}
               className={`card mb-3 ${
                 country.cca3 === activeCountry?.cca3 ? 'active' : ''
@@ -40,39 +40,8 @@ const MainPage = () => {
                 </div>
               </Link>
             </button>
-          ))}
-        </div>
-        <div className='col-md-8'>
-          {activeCountry && (
-            <div>
-              <h2>{activeCountry.name && activeCountry.name.common}</h2>
-              <img
-                src={activeCountry.flags && activeCountry.flags.png}
-                alt={activeCountry.name && activeCountry.name.common}
-              />
-              <p>
-                Capital: {activeCountry.capital && activeCountry.capital[0]}
-              </p>
-              <p>Region: {activeCountry.region}</p>
-              <p>Area: {activeCountry.area}</p>
-              <p>Population: {activeCountry.population}</p>
-              {/* <p>
-      Currencies: {Object.values(activeCountry.currencies).join(', ')}
-    </p>
-    <p>Borders: {activeCountry.borders.join(', ')}</p> */}
-              <p>
-                Currencies:{' '}
-                {activeCountry.currencies
-                  ? Object.values(activeCountry.currencies).join(', ')
-                  : ''}
-              </p>
-              <p>
-                Borders:{' '}
-                {activeCountry.borders ? activeCountry.borders.join(', ') : ''}
-              </p>
-            </div>
-          )}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
